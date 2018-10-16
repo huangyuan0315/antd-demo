@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+import moment from 'moment';
+import Login from './model/Login';
+import LandAfter from './model/LandAfter';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
+
+export default class App extends Component {
+    state = {
+        landState: true
+    }
+    login = () => {
+        this.setState({
+            landState: false
+        })
+    }
+    out = () => {
+        this.setState({
+            landState: true
+        })
+    }
+    render() {
+        return (
+            <LocaleProvider locale={zhCN}>
+                {
+                    this.state.landState ? < Login land={this.login} /> : <LandAfter out={this.out} />
+                }
+            </LocaleProvider>
+
+        )
+    }
 }
-
-export default App;
