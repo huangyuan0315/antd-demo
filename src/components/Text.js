@@ -38,5 +38,45 @@ Text.defaultProps = {
 }
 //同行propTypes定义父组件给子组件传值的类型
 Text.propTypes = {
-    text: PropTypes.string
+    text: PropTypes.string.isRequired
 }
+
+
+// Text.propTypes = {
+//     // 数组
+//     optionalArray: PropTypes.array,
+//     // 布尔值
+//     optionalBool: PropTypes.bool,
+//     // 函数
+//     optionalFunc: PropTypes.func,
+//     // 数值
+//     optionalNumber: PropTypes.number,
+//     // 对象
+//     optionalObject: PropTypes.object,
+//     // 字符串
+//     optionalString: PropTypes.string,
+//     // symbol
+//     optionalSymbol: PropTypes.symbol,
+//     // 能够被渲染的数值，字符串，元素或者包含这些类型的数组
+//     optionalNode: PropTypes.node,
+//     // React元素
+//     optionalElement: PropTypes.element,
+//     // optionalMessage是Message类的实例
+//     optionalMessage: PropTypes.instanceOf(Message),
+//     // optionalEnum为['News', 'Photos']中的其中一个
+//     optionalEnum: PropTypes.oneOf(['News', 'Photos']),
+//     //optionalUnion要么为字符串，要么为数值，要么为Message实例
+//     optionalUnion: PropTypes.oneOfType([
+//         PropTypes.string,
+//         PropTypes.number,
+//         PropTypes.instanceOf(Message)
+//     ]),
+//     // optionalArrayOf是数值类型的数组
+//     optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+//     // optionalObjectOf的属性是数值
+//     optionalObjectOf: PropTypes.objectOf(PropTypes.number),
+//     // requiredFunc是函数，且必须提供。isRequired可以链接到任何值后面
+//     requiredFunc: PropTypes.func.isRequired,
+//     // requiredAny可以是任何类型，且必须提供
+//     requiredAny: PropTypes.any.isRequired
+// }

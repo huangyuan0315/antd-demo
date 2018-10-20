@@ -3,7 +3,7 @@ import fetchJsonp from 'fetch-jsonp';
 import { List } from 'antd';
 import { Link } from 'react-router-dom';
 import ChartList from './ChartList';
-class FetchJsonp extends Component {
+class Video extends Component {
     state = {
         list: []
     }
@@ -51,4 +51,4 @@ class FetchJsonp extends Component {
         );
     }
 }
-export default FetchJsonp;
+export default Video;
