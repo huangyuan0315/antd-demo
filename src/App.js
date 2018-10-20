@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
-import { LocaleProvider } from 'antd';
-import zhCN from 'antd/lib/locale-provider/zh_CN';
-import moment from 'moment';
-import Login from './model/Login';
-import LandAfter from './model/LandAfter';
+import React from 'react'
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import Loadable from 'react-loadable';
+import { loading } from './model/config';
 
-import 'moment/locale/zh-cn';
-moment.locale('zh-cn');
+const LandAfter = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ './model/LandAfter'),
+    ...loading
+});
+const Login = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ './model/Login'),
+    ...loading
+});
 
-export default class App extends Component {
-    state = {
-        landState: true
-    }
-    login = () => {
-        this.setState({
-            landState: false
-        })
-    }
-    out = () => {
-        this.setState({
-            landState: true
-        })
-    }
-    render() {
-        return (
-            <LocaleProvider locale={zhCN}>
-                {
-                    this.state.landState ? < Login land={this.login} /> : <LandAfter out={this.out} />
-                }
-            </LocaleProvider>
-
-        )
+// 受保护页面拦截器，在本级页面进行拦截，如果发现未登录，则跳转到登录页面，否则允许进入隐私页面
+const ProtectPage = props => {
+    // 如果没有登录
+    if (!localStorage.getItem('LAND')) {
+        return <Redirect to='/login'></Redirect>
+    } else {
+        return <LandAfter {...props} />
     }
 }
+
+const App = props => (
+    <Router>
+        <div className='root-content'>
+            <Route path={`/login`} component={Login} />
+            <Route path={`/yuan`} component={ProtectPage} />
+        </div>
+    </Router>
+)
+
+
+export default App

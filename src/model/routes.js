@@ -1,61 +1,95 @@
-import Home from '../pages/Home';
-import User from '../pages/User';
-import About from '../pages/About';
-import News from '../pages/News';
-import Forms from '../pages/Forms';
-import Todolist from '../pages/Todolist';
-import Hotspot from '../components/Hotspot';
-import Military from '../components/Military';
-import NewsList from '../components/NewsList';
-import VideoDetails from '../components/VideoDetails';
+
+import Loadable from 'react-loadable';
+import { loading } from './config';
+const Home = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../pages/Home'),
+    ...loading
+});
+const User = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../pages/User'),
+    ...loading
+});
+const About = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../pages/About'),
+    ...loading
+});
+const News = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../pages/News'),
+    ...loading
+});
+const Forms = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../pages/Forms'),
+    ...loading
+});
+const Todolist = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../pages/Todolist'),
+    ...loading
+});
+const Hotspot = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../components/Hotspot'),
+    ...loading
+});
+const Military = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../components/Military'),
+    ...loading
+});
+const NewsList = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../components/NewsList'),
+    ...loading
+});
+const VideoDetails = Loadable({
+    loader: () => import(/* webpackChunkName: "lodash" */ '../components/VideoDetails'),
+    ...loading
+});
+
 const routes = [
     {
-        path: "/",
+        path: "/yuan/home",
         name: 'Home',
         exact: true,
         component: Home
     },
     {
-        path: `/VideoDetails/:aid`,
+        path: `/yuan/VideoDetails/:aid`,
         name: 'VideoDetails',
         component: VideoDetails
     },
     {
-        path: '/users',
+        path: '/yuan/users',
         name: 'Users',
         component: User
     },
     {
-        path: '/about',
+        path: '/yuan/about',
         name: 'About',
         component: About
     },
     {
-        path: '/news',
+        path: '/yuan/news',
         name: 'News',
         component: News,
         routes: [
             {
-                path: '/news/',
-                name: 'newss',
+                path: '/yuan/news/',
+                name: '新闻',
                 component: NewsList
             }, {
-                path: '/news/hotspot',
-                name: 'hotspot',
+                path: '/yuan/news/hotspot',
+                name: '热点',
                 component: Hotspot
             }, {
-                path: '/news/military',
-                name: 'military',
+                path: '/yuan/news/military',
+                name: '军事',
                 component: Military
             }]
     },
     {
-        path: '/forms',
+        path: '/yuan/forms',
         name: 'Forms',
         component: Forms
     },
     {
-        path: '/todolist',
+        path: '/yuan/todolist',
         name: 'Todolist',
         component: Todolist
     }

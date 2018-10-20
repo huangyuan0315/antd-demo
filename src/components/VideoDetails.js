@@ -30,7 +30,7 @@ export default class VideoDetails extends Component {
                             <h3>{this.state.details.title}</h3>
                             <p>{this.state.details.intro}</p>
                             <Button><a href={this.state.details.player_url}>在线观看</a></Button>
-                            <Link to={`/`}><Button style={{ marginLeft: 20 }} icon='step-backward'>返回视频列表</Button></Link>
+                            <Link to={`/yuan/home`}><Button style={{ marginLeft: 20 }} icon='step-backward'>返回视频列表</Button></Link>
                         </div>
                     </Col>
                 </Row>

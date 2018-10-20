@@ -1,16 +1,19 @@
 import React from 'react';
-import { Form, Icon, Input, Checkbox } from 'antd';
+import { Form, Icon, Input, Checkbox, message } from 'antd';
 const FormItem = Form.Item;
-
+// 登录页面，登录后，标记 userName
 class NormalLoginForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-            if (!err) {
+            if (!err && values.userName === "yuan" && values.password === "0315") {
                 console.log('Received values of form: ', values);
-                return true
+                localStorage.setItem('LAND', values.userName)
+                // 赋值后，记得再跳转一下（登录路径和私有页面的路径是不同的）
+                console.log(this.props);
+                this.props.history.push(`/yuan/home`);
             } else {
-                return false
+                message.error('登陆失败，用户名或密码错误！')
             }
         });
     }
@@ -18,19 +21,19 @@ class NormalLoginForm extends React.Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <div className='login'>
-                <Form onSubmit={this.handleSubmit ? this.props.land : ''} className="login-form">
+                <Form onSubmit={this.handleSubmit} className="login-form">
                     <FormItem>
                         {getFieldDecorator('userName', {
                             rules: [{ required: true, message: 'Please input your username!' }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="yuan" />
                         )}
                     </FormItem>
                     <FormItem>
                         {getFieldDecorator('password', {
                             rules: [{ required: true, message: 'Please input your Password!' }],
                         })(
-                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="0315" />
                         )}
                     </FormItem>
                     <FormItem>

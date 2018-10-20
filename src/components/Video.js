@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import { List } from 'antd';
 import { Link } from 'react-router-dom';
+import ChartList from './ChartList';
 class FetchJsonp extends Component {
     state = {
         list: []
@@ -38,9 +39,14 @@ class FetchJsonp extends Component {
                     grid={{ gutter: 16, column: 4 }}
                     dataSource={this.state.list}
                     renderItem={item => (<List.Item onClick={this.getDetailsDate.bind(this, item.id)}>
-                        <Link to={`/VideoDetails/${item.id}`}> {item.title}</Link>
+                        <Link to={`/yuan/VideoDetails/${item.id}`}> {item.title}</Link>
                     </List.Item>)}
                 />
+
+                <hr />
+                <h2 className='text-align'>视频列表</h2>
+                {/* img  图片字段   title  标题字段   details  详情字段   */}
+                <ChartList chartList={this.state.list} img="imgv_url" title="title" details="intro" />
             </div>
         );
     }

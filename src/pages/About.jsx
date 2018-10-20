@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { DatePicker, message } from 'antd';
-
+// import RedirectExample from '../components/RedirectExample';
 export default class About extends Component {
   constructor(props) {
     super(props);
@@ -27,6 +27,10 @@ export default class About extends Component {
         <br /><br />
         <label htmlFor="SSN">USERNAME</label>
         <input id="SSN" ref='usernames' onChange={this.changeUsername} />
+        <br /> <br />
+        {/* <hr />
+        <h2>登录拦截</h2>
+        <RedirectExample /> */}
       </div>
     );
   }

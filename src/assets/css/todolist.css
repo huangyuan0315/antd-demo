@@ -19,7 +19,7 @@ ol,ul{padding:0;list-style:none;}
   text-indent:10px;border-radius:5px;box-shadow: 0 1px 0 rgba(255,255,255,0.24), 0 1px 6px rgba(0,0,0,0.45) inset;border:none;margin-top: 8px;float: right;
 }
 .todo-list .todo-list-complete{clear: both;}
-.todo-list-h2{position:relative;}
+.todo-list-h2{position:relative;} .todo-list-span{float: right;}
 .todo-list li input,.todo-list-complete li input{position:absolute;top:4px;left:10px;width:22px;height:22px;cursor:pointer;}
 .todo-list li,.todo-list-complete li{height:32px;line-height:32px;background: #fff;position:relative;margin-bottom: 10px;
   padding:0 45px;border-radius:3px;border: 1px solid #ddd;

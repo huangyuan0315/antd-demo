@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Text from './Text';
+import TextList from './TextList';
 
 export default class Hotspot extends Component {
     func(arr) {
@@ -7,7 +8,10 @@ export default class Hotspot extends Component {
     }
     render() {
         return (
-            <Text funx={(arr) => this.func(arr)} text='热点' />
+            <div>
+                <Text funx={(arr) => this.func(arr)} text='热点' />
+                <TextList />
+            </div>
         )
     }
 }

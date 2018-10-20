@@ -1,8 +1,15 @@
-/* #root{
+#root,.root-content{
     width: 100%;
     height: 100%;
-    background-color: #f0f0f0;
-} */
+    /* background-color: #f0f0f0; */
+}
+.loadings{
+    width: 100%; 
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .text-align{
   text-align: center;
 }
@@ -16,18 +23,23 @@ input:focus{outline:none}
     height: 500px;
     background: #eeee;
   }
+  .content-new-nav{
+      text-align: center;
+      margin: 20px;
+  }
   .content-new .right{
+    margin: 20px;
     flex:1;
     height: 500px;
     background-color: #fff;
   }
   /* Login.js */
   .login{
+      margin-top: 80px;
       display: flex;
       justify-content: center;
   }
   .login-form {
-      margin-top: 80px;
     max-width: 300px;
   }
   .login-form-forgot {
@@ -52,6 +64,18 @@ input:focus{outline:none}
   }
   .video-detail-img{
      width: 100%;
+  }
+
+
+  /* ChartList */
+  .list-detail{
+    margin: 30px 8%;
+    display: flex;
+    height: 200px;
+  }
+  .list-img{
+     width: 100%;
+     height: 200px;
   }
 
 

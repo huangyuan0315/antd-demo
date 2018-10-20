@@ -14,14 +14,13 @@ class News extends Component {
         return (
             <div className="content-new">
                 <div className="left">
-                    <Link to="/news/">新闻</Link>
-                    <br /> <br />
-                    <Link to="/news/hotspot">热点</Link>
-                    <br />
-                    <br />
-                    <Link to="/news/military">军事</Link>
+                    {
+                        this.props.routes.map((route, key) => {
+                            return <div className='content-new-nav' key={key} ><Link to={route.path}>{route.name}</Link></div>
+                        })
+                    }
                 </div>
-                <div>
+                <div className='right'>
                     {
                         this.props.routes.map((route, key) => {
                             return <Route key={key} exact path={route.path} component={route.component} />

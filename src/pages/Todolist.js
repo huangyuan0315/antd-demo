@@ -8,12 +8,23 @@ class Todolist extends Component {
             //     title:'录制ionic',
             //     checked:true
             // }
-        ]
+        ],
+        todoCheckedFalse: 0, //待办
+        todoCheckedTrue: 0 //已完成
+    }
+    todoChecked(tempList) {
+        let todo1 = 0, todo2 = 0;
+        tempList.map((it) => {
+            it.checked ? todo1++ : todo2++
+        })
+        this.setState({
+            todoCheckedFalse: todo2, //待办
+            todoCheckedTrue: todo1 //已完成
+        })
     }
     addData = (e) => {
         //按下回车的时候在增加
         if (e.keyCode === 13) {
-            // alert(title);
             let title = this.refs.title.value;
             let tempList = this.state.list;
             tempList.push({
@@ -22,10 +33,11 @@ class Todolist extends Component {
             })
             //改变后的值赋值给list
             this.setState({
-                list: tempList
+                list: tempList,
             })
             //表单置为空
             this.refs.title.value = '';
+            this.todoChecked(tempList);
             //执行缓存数据
             localStorage.setItem('todolist', JSON.stringify(tempList));
         }
@@ -37,6 +49,7 @@ class Todolist extends Component {
         this.setState({
             list: tempList
         })
+        this.todoChecked(tempList);
         //执行缓存数据
         localStorage.setItem('todolist', JSON.stringify(tempList));
     }
@@ -46,6 +59,7 @@ class Todolist extends Component {
         this.setState({
             list: tempList
         })
+        this.todoChecked(tempList);
         //执行缓存数据
         localStorage.setItem('todolist', JSON.stringify(tempList));
     }
@@ -57,7 +71,8 @@ class Todolist extends Component {
             this.setState({
                 list: todolist
             })
-        }
+            this.todoChecked(todolist);
+        };
     }
     render() {
         return (
@@ -67,8 +82,8 @@ class Todolist extends Component {
                         <input ref="title" onKeyUp={this.addData} />
                     </div>
                 </header>
-                <div className='todo'>
-                    <h2 className='todo-list-h2'>待办事项</h2>
+                {this.state.list.length !== 0 ? <div className='todo'>
+                    <h2 className='todo-list-h2'>待办事项    <span className='todo-list-span'>{this.state.todoCheckedFalse}</span></h2>
                     <hr />
                     <ul className='todo-list'>
                         {
@@ -83,7 +98,7 @@ class Todolist extends Component {
                             })
                         }
                     </ul>
-                    <h2 className='todo-list-h2'>已完成事项</h2>
+                    <h2 className='todo-list-h2'>已完成事项 <span className='todo-list-span'>{this.state.todoCheckedTrue}</span></h2>
                     <hr />
                     <ul className='todo-list-complete'>
                         {
@@ -98,7 +113,8 @@ class Todolist extends Component {
                             })
                         }
                     </ul>
-                </div>
+                </div> : ''}
+
             </div>
         );
     }

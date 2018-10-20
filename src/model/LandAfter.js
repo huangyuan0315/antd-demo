@@ -7,7 +7,7 @@ class LandAfter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            current: '/',
+            current: '/yuan/home',
         }
     }
     handleClick = (e) => {
@@ -17,12 +17,18 @@ class LandAfter extends Component {
         });
     }
     componentDidMount() {
-        const strUrl = window.location.href.split("/");
+        const strUrl = this.props.location.pathname.split("/");
         const strUrlast = strUrl[strUrl.length - 1];
+        console.log(strUrlast)
         this.setState({
-            current: '/' + strUrlast
+            current: '/yuan/' + strUrlast
         });
-        console.log(strUrl, this.state.current);
+    }
+    // 登出逻辑
+    signOut = () => {
+        // 清空登录信息后，记得再重定向一次
+        localStorage.removeItem('LAND');
+        this.props.history.push(`/login`)
     }
     render() {
         return (
@@ -33,26 +39,15 @@ class LandAfter extends Component {
                         selectedKeys={[this.state.current]}
                         mode="horizontal"
                     >
-                        <Menu.Item key="/">
-                            <Link to={`/`}> <Icon type="mail" />HOME</Link >
-                        </Menu.Item>
-                        <Menu.Item key="/users">
-                            <Link to={`/users`}> <Icon type="appstore" />USERS</Link >
-                        </Menu.Item>
-                        <Menu.Item key="/about">
-                            <Link to={`/about`}> <Icon type="arrow-right" />ABOUT</Link >
-                        </Menu.Item>
-                        <Menu.Item key="/news">
-                            <Link to={`/news`}> <Icon type="solution" />NEWS</Link >
-                        </Menu.Item>
-                        <Menu.Item key="/forms">
-                            <Link to={`/forms`}> <Icon type="form" />FROM</Link >
-                        </Menu.Item>
-                        <Menu.Item key="/todolist">
-                            <Link to={`/todolist`}> <Icon type="ordered-list" />TODOLIST</Link >
-                        </Menu.Item>
+                        {
+                            routes.map((route, key) => {
+                                return route.name !== 'VideoDetails' ? <Menu.Item key={route.path}>
+                                    <Link to={route.path}> <Icon type="mail" />{route.name}</Link >
+                                </Menu.Item> : ''
+                            })
+                        }
                         <Menu.Item key="/out" className='out'>
-                            <Icon type='logout' onClick={this.props.out} />
+                            <Icon type='logout' onClick={this.signOut} />
                         </Menu.Item>
                     </Menu>
                     <div>
